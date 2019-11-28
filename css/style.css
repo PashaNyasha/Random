@@ -1,0 +1,599 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    background: linear-gradient(315deg, white 50%, blue);
+    overflow: hidden;
+}
+
+@font-face {
+    src: url('../fonts/pokemon/Pokemon Hollow.ttf');
+    font-family: 'Pokemon Hollow';
+}
+
+@font-face {
+    src: url('../fonts/pokemon/Pokemon Solid.ttf');
+    font-family: 'Pokemon Solid';
+}
+
+
+/*HEADER*/
+
+.whos-that-pokemon {
+    width: 1000px;
+    text-align: center;
+    height: 120px;
+}
+
+.whos-that-pokemon .logo {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pokemon Solid';
+    font-size: 70px;
+    font-weight: bold;
+    color: #ffcc03;
+    position: relative;
+    top: -50px;
+}
+
+.whos-that-pokemon .logo::before {
+    content: "Who's that PoKeMoN?";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -360px;
+    font-family: 'Pokemon Hollow';
+    font-weight: bold;
+    color: #3c59a5;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 5);
+}
+
+main {
+    width: 1000px;
+    padding-bottom: 100%;
+}
+
+.pokebox {
+    height: 500px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    position: relative;
+}
+
+.randomizer,
+.randomizer-back {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 5px;
+    border: 3px solid #ffcc03;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    background: #3c59a5;
+    backface-visibility: hidden;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.randomizer-back {
+    backface-visibility: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+.randomizer .randomizer-image {
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+}
+
+.randomizer-back .randomizer-image {
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+.random-rotate {
+    transform: rotateY(0deg) rotateX(0deg);
+    animation: rotateBlock 2s ease-in-out;
+}
+
+@keyframes rotateBlock {
+    0% {
+        transform: rotateY(0deg);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+    100% {
+        transform: rotateY(360deg);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.hide-image {
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.show-image {
+    opacity: 1;
+    transition: 1s ease;
+}
+
+.description {
+    margin-top: 250px;
+    width: 300px;
+    text-align: center;
+}
+
+.description .name {
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0;
+    font-size: 25px;
+    color: #fff;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 1);
+    font-family: 'Pokemon Hollow';
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.finded-pokemons {
+    width: 750px;
+    height: 500px;
+    position: fixed;
+    top: 50px;
+    right: -750px;
+    background: #3c59a5;
+    border: 3px solid;
+    border-radius: 10px 0 0 10px;
+    box-sizing: border-box;
+    transition: 0.5s ease;
+    z-index: 9999999999;
+}
+
+.finded-pokemons .block-open-button {
+    position: absolute;
+    top: 30px;
+    left: -106px;
+    width: 100px;
+    height: 100px;
+    border: 3px solid;
+    background: #3c59a5;
+    border-right-color: #3c59a5;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+}
+
+.finded-pokemons .block-open-button .open-image {
+    width: 100%;
+    object-fit: fill;
+    animation: asideBlockButton 10s ease infinite;
+}
+
+.finded-pokemons .block-open-button .open-image:hover {
+    filter: drop-shadow(0px 0px 10px white);
+    transition: 0.5s ease;
+}
+
+.show-aside {
+    right: -2px;
+    transition: 0.5s ease;
+}
+
+@keyframes asideBlockButton {
+    0% {
+        filter: drop-shadow(0px 0px 10px rgb(0, 183, 255));
+    }
+    10% {
+        filter: drop-shadow(0px 0px 10px rgb(21, 255, 0));
+    }
+    20% {
+        filter: drop-shadow(0px 0px 10px rgb(255, 238, 0));
+    }
+    30% {
+        filter: drop-shadow(0px 0px 10px rgb(255, 115, 0));
+    }
+    40% {
+        filter: drop-shadow(0px 0px 10px rgb(255, 72, 0));
+    }
+    50% {
+        filter: drop-shadow(0px 0px 10px rgb(255, 0, 119));
+    }
+    60% {
+        filter: drop-shadow(0px 0px 10px rgb(255, 0, 234));
+    }
+    70% {
+        filter: drop-shadow(0px 0px 10px rgb(162, 0, 255));
+    }
+    80% {
+        filter: drop-shadow(0px 0px 10px rgb(25, 0, 255));
+    }
+    90% {
+        filter: drop-shadow(0px 0px 10px rgb(0, 204, 255));
+    }
+    100% {
+        filter: drop-shadow(0px 0px 10px rgb(0, 255, 115));
+    }
+}
+
+.finded-pokemons .blocks {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 402px;
+    width: 100%;
+}
+
+.finded-pokemons .blocks .block-image {
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+    filter: brightness(0) blur(1px);
+}
+
+.finded-pokemons .blocks .block-image-color {
+    filter: brightness(1) blur(0);
+    transition: 1s ease;
+}
+
+.finded-pokemons .pokemon-undefined {
+    width: 70px;
+    height: 70px;
+    border: 2px solid #ffcc03;
+    border-radius: 3px;
+    margin: 3px;
+    background: rgb(240, 238, 238);
+    background-size: cover;
+    box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.finded-pokemons .pokemon-fiend {
+    box-shadow: 0px 0px 10px 5px rgba(251, 255, 0, 0.771), 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.hide-block {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: 1s ease;
+}
+
+.show-block {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: 1s ease;
+}
+
+.buttons-and-taps {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.buttons-and-taps button {
+    width: 90px;
+    height: 90px;
+    font-size: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    outline: none;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.buttons-and-taps .prev {
+    border-radius: 0 10px 0 0;
+}
+
+.buttons-and-taps .next {
+    border-radius: 10px 0 0 0;
+}
+
+.buttons-and-taps button:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.buttons-and-taps button:active {
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.buttons-and-taps .tabs ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.buttons-and-taps .tabs ul li {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+    text-indent: -99999px;
+    position: relative;
+    cursor: pointer;
+}
+
+.buttons-and-taps .tabs ul li:last-of-type {
+    margin-right: 0;
+}
+
+.buttons-and-taps .tabs ul li::before {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background: url('../img/1.png') 0 0 no-repeat;
+    background-size: 100%;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    filter: grayscale(1);
+}
+
+.buttons-and-taps .tabs ul li:hover::before {
+    opacity: 0.7;
+}
+
+.buttons-and-taps .tabs .active-tab::before {
+    filter: grayscale(0);
+    transition: 0.5s ease;
+}
+
+.error-block {
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -1px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.error {
+    width: 200px;
+    height: 70px;
+    border: 1px solid;
+    animation: showError 0.1s ease;
+    transform: translateX(0);
+    margin-top: 10px;
+    border: 2px solid #ffcc03;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    background: rgb(255, 255, 255);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.error p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-top: 23px;
+    font-size: 20px;
+    color: #0059ff;
+    text-shadow: 1px 1px 1px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes showError {
+    0% {
+        transform: translateX(-202px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.you-win {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    border: 1px solid;
+    z-index: 9999;
+    display: none;
+}
+
+.active-bg {
+    display: initial;
+    animation: changeBg 1s ease;
+    background: #0059ff94
+}
+
+@keyframes changeBg {
+    0% {
+        background: transparent;
+    }
+    100% {
+        background: #0059ff94;
+    }
+}
+
+.you-win .text {
+    margin-top: 170px;
+}
+
+.you-win span {
+    width: 100%;
+    height: 100%;
+    margin-top: 170px;
+    font-size: 150px;
+    opacity: 0;
+    color: yellow;
+    text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.you-win .big {
+    opacity: 1;
+    font-size: 160px;
+    transition: 0.05s ease;
+    animation: bigAnimation 1s infinite;
+}
+
+@keyframes bigAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+
+.you-win .big:first-child {
+    color: rgb(255, 230, 0);
+}
+
+.you-win .big:nth-child(2) {
+    color: rgb(0, 183, 255);
+}
+
+.you-win .big:nth-child(4) {
+    color: rgb(21, 255, 0);
+}
+
+.you-win .big:nth-child(5) {
+    color: rgb(255, 0, 157);
+}
+
+.you-win .big:nth-child(6) {
+    color: rgb(89, 0, 255);
+}
+
+.you-win .big:nth-child(7) {
+    color: rgb(255, 0, 149);
+}
+
+.you-win .big:nth-child(8) {
+    color: rgb(251, 255, 0);
+}
+
+.you-win .big:nth-child(9) {
+    color: rgb(255, 0, 0);
+}
+
+.you-win .big:nth-child(11) {
+    color: rgb(0, 255, 170);
+}
+
+.you-win .big:nth-child(12) {
+    color: rgb(0, 195, 255);
+}
+
+.you-win .big:nth-child(13) {
+    color: rgb(0, 17, 255);
+}
+
+.you-win .big:nth-child(14) {
+    color: rgb(255, 208, 0);
+}
+
+.you-win .big:nth-child(15) {
+    color: rgb(255, 238, 0);
+}
+
+.replay-box {
+    position: absolute;
+    top: 230px;
+    height: 100px;
+    position: relative;
+}
+
+.replay-text {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -11.5px 0 0 -38px;
+}
+
+.you-win .replay {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    margin-left: -75px;
+    outline: none;
+    background: none;
+    border: 10px solid;
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    cursor: pointer;
+    z-index: 99999999;
+}
+
+.you-win .replay::before {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border: 10px solid #fff;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.you-win .replay::after {
+    content: '';
+    position: absolute;
+    bottom: 11px;
+    right: 0px;
+    width: 0px;
+    height: 0px;
+    border: 10px solid #fff;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+
+.replay:hover {
+    transform: rotate(360deg);
+    animation: rotateButton 1s ease;
+}
+
+.replay:active,
+.replay:active+.replay-text {
+    transform: scale(0.5);
+}
+
+@keyframes rotateButton {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
